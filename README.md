@@ -1,2 +1,2 @@
 # LoginSystem
-Logins system using only Java
+Login system using only Java
