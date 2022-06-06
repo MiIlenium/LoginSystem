@@ -2,10 +2,10 @@
 Login system using only Java
 
 Simple login system that contains the following:
-    -Simple UI
-    -Login & Registration buttons
-    -Simple User validation algorythm
-    
+-Simple UI
+-Login & Registration buttons
+-Simple User validation algorythm
+
 UI:
 FieldUserName - Input username text
 FieldPassword - Input password text
@@ -13,23 +13,23 @@ FieldPassword - Input password text
 *FIELD REGISTRATION*
 User inputs userdata
 Class Class_Name checks the file in FileSystem(FS) whether the Username is already there
-  if(true)
-  {throws user already exist}
+if(true)
+{throws user already exist}
 
 If User doesn't exist class Class_Name should write write given credentials into the file with colon (:) delimeted
 
 *FIELD LOGIN*
 User inputs userdata
 Class Class_Name reads the file in the file system and checks if user in the list
-    -if user not found throws {username or password is incorrect}
-    -if user found then check the password for this user
-        -if password doesn't match throws {username or password is incorrect}
-        -if password matches message {You have been logged in}
-        
-        
-        
+-if user not found throws {username or password is incorrect}
+-if user found then check the password for this user
+-if password doesn't match throws {username or password is incorrect}
+-if password matches message {You have been logged in}
+
+
+
 Class description
-    
+
     - *LoginPage implements ActionListener*
       this class contain login frame implementation and it implements ActionListener to listen the buttons
       
