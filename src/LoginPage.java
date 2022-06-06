@@ -21,8 +21,8 @@ public class LoginPage implements ActionListener {
 
     HashMap<String, String> loginInfo;
 
-    public LoginPage(HashMap<String, String> loginCredentials) {
-        this.loginInfo = loginCredentials;
+    public LoginPage() {
+        //this.loginInfo = loginCredentials;
 
         //set frames to the login window (x, y, width, height)
         userNameLabel.setBounds(50,100,75,25);
