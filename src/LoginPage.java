@@ -19,7 +19,7 @@ public class LoginPage implements ActionListener {
     JLabel userPasswordLabel = new JLabel("Password:");
     JLabel messageLable = new JLabel();
 
-    HashMap<String, String> loginInfo = new HashMap<String, String>();
+    HashMap<String, String> loginInfo;
 
     public LoginPage(HashMap<String, String> loginCredentials) {
         this.loginInfo = loginCredentials;
@@ -50,7 +50,7 @@ public class LoginPage implements ActionListener {
         frame.add(messageLable);
 
         //set frame settings (size, close on, layout and visibility)
-        frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(420, 420);
         frame.setLayout(null);
         frame.setVisible(true);
@@ -63,24 +63,32 @@ public class LoginPage implements ActionListener {
         //Reads file and writes it into the hashmap
         Registration register = new Registration(userNameField.getText(), String.valueOf(userPasswordField.getPassword()));
         ReadFile rd = new ReadFile();
+
         //passes HashMap to constructor for validation
         ValidateUser vd = new ValidateUser(rd.HashMapFromTextFile());
+        UserExistance checkExistance = new UserExistance();
 
         //if "register" button is clicked write user data into .txt file
         if(e.getSource() == registerButton){
-            try {
-                register.writeToFile(userNameField.getText(), String.valueOf(userPasswordField.getPassword()));
-            } catch (IOException ex) {
+            if(checkExistance.IfUserExits(userNameField.getText())){
+                messageLable.setForeground(Color.red);
+                messageLable.setText("User with this username already exist");
+            }else{
+                try {
+                    register.writeToFile(userNameField.getText(), String.valueOf(userPasswordField.getPassword()));
+                } catch (IOException ex) {
+                }
+                //output text on success
+                messageLable.setForeground(Color.green);
+                messageLable.setText("Register has been successful! You can login now!");
             }
-            //output text on success
-            messageLable.setForeground(Color.green);
-            messageLable.setText("Register has been successful! You can login now!");
+
         }
         //"Login" button is clicked read the .txt file and validate whether Username and Password is valid
         if(e.getSource() == loginButton){
             String userName = userNameField.getText();
             String userPassword = String.valueOf(userPasswordField.getPassword());
-            if(vd.validateUserName(userName) == true){
+            if(vd.validateUserName(userName)){
                 if(vd.validateUserPassword(userName, userPassword)){
                     //output text on success
                     messageLable.setForeground(Color.green);
