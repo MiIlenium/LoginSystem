@@ -9,10 +9,12 @@ public class WriteFile {
         //The name of the file in the FS
         final String outputFilePath = "userCredentials.txt";
         File file = new File(outputFilePath);
+        Encrypt passwordEncrypt = new Encrypt();
+        String encryptedPassword = passwordEncrypt.stringToEncrypt(password);
 
         //Writing userdata into the file, delimited by the colon
         wr = new BufferedWriter(new FileWriter(file, true));
-        wr.write(userName + ":" + password);
+        wr.write(userName + ":" + encryptedPassword);
         wr.newLine();
         wr.flush();
         wr.close();

@@ -38,7 +38,6 @@ public class ReadFile {
                     br.close();
                 } catch (Exception e) {
                 }
-                ;
             }
         }
 
