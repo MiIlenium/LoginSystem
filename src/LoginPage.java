@@ -68,6 +68,8 @@ public class LoginPage implements ActionListener {
         ValidateUser vd = new ValidateUser(rd.HashMapFromTextFile());
         UserExistance checkExistance = new UserExistance();
 
+        Encrypt toEncrypt = new Encrypt();
+
         //if "register" button is clicked write user data into .txt file
         if(e.getSource() == registerButton){
             if(checkExistance.IfUserExits(userNameField.getText())){
@@ -86,10 +88,12 @@ public class LoginPage implements ActionListener {
         }
         //"Login" button is clicked read the .txt file and validate whether Username and Password is valid
         if(e.getSource() == loginButton){
+
             String userName = userNameField.getText();
-            String userPassword = String.valueOf(userPasswordField.getPassword());
+            String encryptedPassword = toEncrypt.stringToEncrypt(String.valueOf(userPasswordField.getPassword()));
+
             if(vd.validateUserName(userName)){
-                if(vd.validateUserPassword(userName, userPassword)){
+                if(vd.validateUserPassword(userName, encryptedPassword)){
                     //output text on success
                     messageLable.setForeground(Color.green);
                     messageLable.setText("You have been logged in.");
