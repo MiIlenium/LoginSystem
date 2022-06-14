@@ -39,6 +39,9 @@ Class description
     - *WriteFile*
       this class writes file "userCredentials.txt" delimited by the colon (:). Returns nothing (void)
       
+    - *Encrypt*
+      encrypt user password in HASH value. Returns String
+      
     - *UserExistence*
       reads the file from the FS and search whether passed parameter (HashMap Key)exist in the file
       
