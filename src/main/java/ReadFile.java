@@ -6,7 +6,7 @@ import java.util.HashMap;
 public class ReadFile {
     final static String filePath = "userCredentials.txt";
     public static HashMap<String, String> HashMapFromTextFile() {
-        HashMap<String, String> map = new HashMap<String, String>();
+        HashMap<String, String> map = new HashMap<>();
         BufferedReader br = null;
         try {
             // create file object
