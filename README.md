@@ -4,22 +4,22 @@ Login system using only Java
 Simple login system that contains the following:
 -Simple UI
 -Login & Registration buttons
--Simple User validation algorythm
+-Simple com.petproject.loginsystem.entity.User validation algorythm
 
 UI:
 FieldUserName - Input username text
 FieldPassword - Input password text
 
 *FIELD REGISTRATION*
-User inputs userdata
+com.petproject.loginsystem.entity.User inputs userdata
 Class Class_Name checks the file in FileSystem(FS) whether the Username is already there
 if(true)
 {throws user already exist}
 
-If User doesn't exist class Class_Name should write write given credentials into the file with colon (:) delimeted
+If com.petproject.loginsystem.entity.User doesn't exist class Class_Name should write write given credentials into the file with colon (:) delimeted
 
 *FIELD LOGIN*
-User inputs userdata
+com.petproject.loginsystem.entity.User inputs userdata
 Class Class_Name reads the file in the file system and checks if user in the list
 -if user not found throws {username or password is incorrect}
 -if user found then check the password for this user
@@ -39,7 +39,7 @@ Class description
     - *WriteFile*
       this class writes file "userCredentials.txt" delimited by the colon (:). Returns nothing (void)
       
-    - *Encrypt*
+    - *com.petproject.loginsystem.security.Encrypt*
       encrypt user password in HASH value. Returns String
       
     - *UserExistence*
