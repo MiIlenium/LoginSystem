@@ -4,8 +4,8 @@ import com.petproject.loginsystem.controller.dto.UserDto;
 import com.petproject.loginsystem.entity.User;
 import com.petproject.loginsystem.repository.UserRepository;
 import com.petproject.loginsystem.service.UserService;
-//import org.springframework.security.crypto.password.PasswordEncoder;
-import com.petproject.loginsystem.security.Encrypt;
+import org.springframework.context.annotation.Scope;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,13 +14,12 @@ import java.util.stream.Collectors;
 @Service
 public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
-    //private PasswordEncoder passwordEncoder;
-    private Encrypt passwordEncrypt;
+    private PasswordEncoder passwordEncoder;
 
     public UserServiceImpl(UserRepository userRepository,
-                           Encrypt passwordEncrypt) {
+                           PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
-        //his.passwordEncrypt = passwordEncrypt;
+        this.passwordEncoder = passwordEncoder;
     }
     @Override
     public void saveUser(UserDto userDto){
@@ -28,9 +27,7 @@ public class UserServiceImpl implements UserService {
         user.setName(userDto.getFirstName() + " " + userDto.getLastName());
         user.setEmail(userDto.getEmail());
 
-        //String below can be replaced with the following:
-        //user.setPassword(passwordEncoder.encode(userDto.getPassword()));
-        user.setPassword(passwordEncrypt.stringToEncrypt(userDto.getPassword()));
+        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
 
         userRepository.save(user);
     }
